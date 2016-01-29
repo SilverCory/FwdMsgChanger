@@ -53,11 +53,8 @@ public class ChangerPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
-
         if (!new File(getDataFolder(), "kick_message.txt").exists())
             saveResource("kick_message.txt", false);
-        if (!new File(getDataFolder(), "config.yml").exists())
-            saveDefaultConfig();
     }
 
     @Override
