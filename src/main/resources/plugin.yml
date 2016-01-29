@@ -1,0 +1,11 @@
+name: FwdMsgChanger
+
+version: ${pom.version}-B#${env.BUILD_NUMBER}
+
+author: Cory Redmond
+
+main: co.ryred.fwdmsgchanger.ChangerPlugin
+
+description: Changes the IPForwarding message.
+
+depend: ['ProtocolLib']
