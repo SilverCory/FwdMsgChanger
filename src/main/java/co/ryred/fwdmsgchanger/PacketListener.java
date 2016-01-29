@@ -71,7 +71,7 @@ public class PacketListener extends PacketAdapter {
         this.bungeeField = Class.forName("org.spigotmc.SpigotConfig").getDeclaredField("bungee");
 
         disconWrapper = new WrapperLoginServerDisconnect();
-        disconWrapper.setReason( WrappedChatComponent.fromText(ChangerPlugin.kick_message) );
+        disconWrapper.setReason(WrappedChatComponent.fromText(ChangerPlugin.kick_message));
 
     }
 
@@ -82,7 +82,7 @@ public class PacketListener extends PacketAdapter {
             WrapperHandshakingClientSetProtocol protSet = new WrapperHandshakingClientSetProtocol(event.getPacket());
 
             String[] string = protSet.getServerAddressHostnameOrIp().split("\00");
-            if( (boolean)bungeeField.get(null) && string.length != 3 && string.length != 4 ) {
+            if ((boolean) bungeeField.get(null) && string.length != 3 && string.length != 4) {
                 SocketInjector ignored = TemporaryPlayerFactory.getInjectorFromPlayer(event.getPlayer());
                 ignored.sendServerPacket(disconWrapper.getHandle().getHandle(), event.getNetworkMarker(), false);
                 pl.getLogger().info("Disconnected " + ignored.getSocket().getInetAddress() + ":" + ignored.getSocket().getPort() + ". They weren't using IP Forwarding.");

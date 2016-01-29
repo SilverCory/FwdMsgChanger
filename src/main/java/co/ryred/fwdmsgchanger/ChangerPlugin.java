@@ -35,24 +35,11 @@
 
 package co.ryred.fwdmsgchanger;
 
-import co.ryred.fwdmsgchanger.packetwrapper.WrapperLoginServerDisconnect;
-import co.ryred.red_commons.Logs;
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.chat.BaseComponentSerializer;
-import net.md_5.bungee.chat.ComponentSerializer;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -67,9 +54,9 @@ public class ChangerPlugin extends JavaPlugin {
     @Override
     public void onLoad() {
 
-        if( !new File( getDataFolder(), "kick_message.txt" ).exists() )
+        if (!new File(getDataFolder(), "kick_message.txt").exists())
             saveResource("kick_message.txt", false);
-        if( !new File( getDataFolder(), "config.yml" ).exists() )
+        if (!new File(getDataFolder(), "config.yml").exists())
             saveDefaultConfig();
     }
 
@@ -77,7 +64,7 @@ public class ChangerPlugin extends JavaPlugin {
     public void onEnable() {
 
         try {
-            kick_message = new Scanner( new FileInputStream(new File(getDataFolder(), "kick_message.txt")), "UTF-8" ).useDelimiter( "\\A" ).next();
+            kick_message = new Scanner(new FileInputStream(new File(getDataFolder(), "kick_message.txt")), "UTF-8").useDelimiter("\\A").next();
             kick_message = ChatColor.translateAlternateColorCodes('&', kick_message).replace("\n\r", "\n").replace("\r", "");
         } catch (Exception e) {
             throw new RuntimeException("Unable to load the kick_message.txt file.", e);
